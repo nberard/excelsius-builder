@@ -1,0 +1,17 @@
+owm_agregator:
+  image: excelsius/owm_agregator-arm:latest
+  links:
+   - elasticsearch:elasticsearch
+elasticsearch:
+  image: mangoraft/elasticsearch-arm:latest
+  ports:
+   - "9200:9200"
+   - "9300:9300"
+  volumes:
+   - ./data:/usr/share/elasticsearch/data
+kibana:
+  image: kibana-arm:latest
+  links:
+   - elasticsearch:elasticsearch
+  ports:
+   - "5601:5601"
